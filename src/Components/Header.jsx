@@ -12,11 +12,6 @@ export default function Header() {
                                 Home
                             </NavLink>
                         </li>
-                        <li>
-                            <NavLink to="/details">
-                                Details
-                            </NavLink>
-                        </li>
                     </ul>
                 </nav>
             </header>
