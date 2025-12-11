@@ -1,52 +1,17 @@
-import { Link, NavLink, Routes } from "react-router-dom"
-import { BrowserRouter } from "react-router-dom"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import DefaultLayout from "./Layout/DefaultLayout"
+import HomePage from "./Pages/HomePage"
+import Details from "./Pages/Details"
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <header>
-            Header
-            <nav>
-              <ul>
-                <NavLink to="/">
-                  Home
-                </NavLink>
-                <NavLink to="/details">
-                  Details
-                </NavLink>
-              </ul>
-            </nav>
-          </header>
-
-          <main>Main</main>
-
-          <footer>
-            Footer
-            <div className="contacts">
-              Contatti
-              <ul>
-                <li>
-                  <a href="#">Chi siamo</a>
-                  <a href="#">La nostra mission</a>
-                  <a href="#">Team</a>
-                  <a href="#">Lavora con noi</a>
-                  <a href="#">Storia</a>
-                </li>
-              </ul>
-            </div>
-            <div className="support">
-              Supporto
-              <ul>
-                <li>
-                  <a href="#">Supporto e assistenza</a>
-                  <a href="#">FAQ</a>
-                  <a href="#">Assistenza clienti</a>
-                </li>
-              </ul>
-            </div>
-          </footer>
+          <Route element={<DefaultLayout />}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/details" element={<Details />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </>
