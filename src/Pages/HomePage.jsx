@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
+import { Link, NavLink, useNavigate } from "react-router-dom"
 
 export default function HomePage() {
 
@@ -15,7 +16,8 @@ export default function HomePage() {
                 console.log(err.message);
             })
     }, [])
-    console.log(movies);
+
+    const navigate = useNavigate()
 
 
     return (
@@ -34,6 +36,11 @@ export default function HomePage() {
                                             <p className="card-text">Director: {movie.director}</p>
                                             <p className="card-text">Genre: {movie.genre}</p>
                                             <p className="card-text">Release Year: {movie.release_year}</p>
+
+                                            <button className="btn btn-primary" onClick={() => (
+                                                navigate(`/details/${movie.id}`)
+                                            )}>Go to details</button>
+
                                         </div>
                                     </div>
                                 </div>
@@ -43,7 +50,7 @@ export default function HomePage() {
 
                     </div>
                 </div>
-            </main>
+            </main >
         </>
     )
 }
