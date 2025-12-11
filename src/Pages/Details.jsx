@@ -1,11 +1,11 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 
 export default function Details() {
 
     const { id } = useParams()
-
+    const navigate = useNavigate()
 
     //empty array to inglobe movies from DB
     const [movie, setMovie] = useState([])
@@ -29,7 +29,7 @@ export default function Details() {
             <main>
                 <div className="container ">
 
-                    <div className="card mb-3">
+                    <div className="card">
                         <div className="row">
                             <div className="col-md-5">
                                 <img src={`https://placehold.co/200x200?text=${movie.title}`} className="img-fluid rounded-start w-100" alt={movie.title} />
@@ -45,6 +45,8 @@ export default function Details() {
                             </div>
                         </div>
                     </div>
+
+                    <button className="btn btn-primary my-5" onClick={() => (navigate(-1))}>Go back</button>
 
                     <div className="reviews row">
                         {
