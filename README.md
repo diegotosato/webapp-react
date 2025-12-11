@@ -1,6 +1,6 @@
 ## Webapp - FrontEnd
-- install react, clean up the starting application
-- install dependencies: react-router-dom, axios
+- [x] install react, clean up the starting application
+- [x] install dependencies: react-router-dom, axios
 - create default layout
     - header comp + style
     - footer comp + style
