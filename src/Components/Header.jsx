@@ -1,20 +1,9 @@
-import { Link, NavLink } from "react-router-dom"
+import NavBar from "./NavBar"
 
 export default function Header() {
     return (
         <>
-            <header>
-                Header
-                <nav>
-                    <ul>
-                        <li>
-                            <NavLink to="/">
-                                Home
-                            </NavLink>
-                        </li>
-                    </ul>
-                </nav>
-            </header>
+            <NavBar />
         </>
     )
 }
