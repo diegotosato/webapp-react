@@ -7,12 +7,16 @@ export default function Header() {
                 Header
                 <nav>
                     <ul>
-                        <NavLink to="/">
-                            Home
-                        </NavLink>
-                        <NavLink to="/details">
-                            Details
-                        </NavLink>
+                        <li>
+                            <NavLink to="/">
+                                Home
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/details">
+                                Details
+                            </NavLink>
+                        </li>
                     </ul>
                 </nav>
             </header>

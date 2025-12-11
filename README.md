@@ -1,10 +1,10 @@
 ## Webapp - FrontEnd
 - [x] install react, clean up the starting application
 - [x] install dependencies: react-router-dom, axios
-- create default layout
-    - header comp + style
-    - footer comp + style
-- create first route with homepage comp
+- [x] create default layout
+    - [x] header comp + style
+    - [x] footer comp + style
+- [x] create first route with homepage comp
     - make ajax request
     - create env file to store the api url
     - print results with comps (movies list, movie card with comp, ecc)
