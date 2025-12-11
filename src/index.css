@@ -1,3 +1,6 @@
+@import url('bootstrap');
+@import url('bootstrap-icons');
+
 * {
   margin: 0;
   padding: 0;
