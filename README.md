@@ -5,7 +5,7 @@
     - [x] header comp + style
     - [x] footer comp + style
 - [x] create first route with homepage comp
-    - make ajax request
+    - [x] make ajax request
     - create env file to store the api url
     - print results with comps (movies list, movie card with comp, ecc)
 - create second route for single movie
