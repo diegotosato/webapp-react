@@ -10,11 +10,12 @@ export default function HomePage() {
     useEffect(() => {
         axios.get('http://localhost:3000/api/movies')
             .then(response => {
-                setMovies(response)
+                setMovies(response.data)
             }).catch(err => {
                 console.log(err.message);
             })
     }, [])
+    console.log(movies);
 
 
     return (
@@ -22,11 +23,26 @@ export default function HomePage() {
             <main>
                 <div className="container">
                     <div className="row">
+                        {/* {
+                            movies.map(movie => {
+                                <div className="col" key={movie.id}>
+                                    <div className="card">
+                                        <img src={movie.image} className="card-img-top" alt={movie.title} />
+                                        <div className="card-body">
+                                            <h5 className="card-title">{movie.title}</h5>
+                                            <p className="card-text">{movie.abstract}</p>
+                                            <p className="card-text">Director: {movie.director}</p>
+                                            <p className="card-text">Genre: {movie.genre}</p>
+                                            <p className="card-text">Release Year: {movie.release_year}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            })
+                        } */}
+
                         <div className="col">
                             <div className="card">
-
                                 <img src="..." className="card-img-top" alt="movie_img" />
-
                                 <div className="card-body">
                                     <h5 className="card-title">Card title</h5>
                                     <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
