@@ -29,7 +29,7 @@ export default function MovieDetailPage() {
     const [select, setSelect] = useState(1)
     const [textarea, setTextarea] = useState('')
 
-    const [nameValidation, setNameValidation] = useState(false)
+    const [nameVal, setNameVal] = useState(false)
     const [textareaVal, setTextareaVal] = useState(false)
 
 
@@ -37,10 +37,10 @@ export default function MovieDetailPage() {
         e.preventDefault()
 
         if (reviewerName.length === 0) {
-            setNameValidation(true)
+            setNameVal(true)
             return;
         } else {
-            setNameValidation(false)
+            setNameVal(false)
         }
 
         if (textarea.length === 0) {
@@ -109,7 +109,7 @@ export default function MovieDetailPage() {
                                 <input type="text" className="form-control" name="name" id="name" placeholder="Your name here"
                                     value={reviewerName} onChange={e => setReviewerName(e.target.value)} />
                                 {
-                                    (nameValidation ? <small className="text-danger">Leave your name!</small> : '')
+                                    (nameVal ? <small className="text-danger">Leave your name!</small> : '')
                                 }
 
                             </div>
