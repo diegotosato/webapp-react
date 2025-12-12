@@ -11,9 +11,9 @@ export default function MovieDetailCard({ movie }) {
                         <div className="card-body d-flex flex-column justify-content-center gap-3 h-100 ms-5">
                             <h5 className="card-title fs-1">{movie.title}</h5>
                             <p className="card-text">{movie.abstract}</p>
-                            <p className="card-text fs-5"><i class="bi bi-camera-reels"></i> Director: <strong>{movie.director}</strong></p>
-                            <p className="card-text fs-5"><i class="bi bi-film"></i> Genre: <strong>{movie.genre}</strong></p>
-                            <p className="card-text fs-5"><i class="bi bi-calendar"></i> Release Year: <strong>{movie.release_year}</strong></p>
+                            <p className="card-text fs-5"><i className="bi bi-camera-reels"></i> Director: <strong>{movie.director}</strong></p>
+                            <p className="card-text fs-5"><i className="bi bi-film"></i> Genre: <strong>{movie.genre}</strong></p>
+                            <p className="card-text fs-5"><i className="bi bi-calendar"></i> Release Year: <strong>{movie.release_year}</strong></p>
                         </div>
                     </div>
                 </div>
