@@ -56,6 +56,14 @@ export default function AdminAddMovieForm({ movies, setMovies, setShow }) {
 
 
     }
+
+
+    function handleClose() {
+        setShow(false)
+    }
+
+
+
     return (
         <>
             <form className="px-5 py-4 bg-dark text-white mb-5" onSubmit={e => handleSubmit(e)}>
@@ -106,9 +114,10 @@ export default function AdminAddMovieForm({ movies, setMovies, setShow }) {
                     </div>
 
                 </div>
-
-                <button className="btn btn-primary mt-4"><i className="bi bi-save"></i>Save</button>
-
+                <div className="buttons d-flex justify-content-between">
+                    <button className="btn btn-primary mt-4"><i className="bi bi-save"></i> Save</button>
+                    <button className="btn btn-danger mt-4" onClick={handleClose}><i className="bi bi-x-lg"></i> Close</button>
+                </div>
             </form>
         </>
     )
