@@ -4,15 +4,16 @@ export default function AdminTable({ movies }) {
             <div className="table-responsive">
 
                 <table className="table table-dark table-striped align-middle"                            >
-                    <thead>
+                    <thead className="align-middle">
                         <tr>
                             <th>Title</th>
                             <th>Image</th>
                             <th>Director</th>
                             <th>Genre</th>
                             <th>Release Year</th>
+                            <th>Abstract</th>
                             <th className="text-center">
-                                <button className="btn btn-sm btn-outline-light"><i className="bi bi-plus-circle"></i> Add film</button>
+                                <button className="btn btn-sm btn-outline-light"><i className="bi bi-plus-circle"></i> Add</button>
                             </th>
                         </tr>
                     </thead>
@@ -29,6 +30,7 @@ export default function AdminTable({ movies }) {
                                     <td>{movie.director}</td>
                                     <td>{movie.genre}</td>
                                     <td>{movie.release_year}</td>
+                                    <td>{movie.abstract}</td>
                                     <td className="text-center">
                                         <div className="d-flex justify-content-center gap-3">
                                             <button className="btn btn-sm btn-outline-warning"><i className="bi bi-pencil"></i></button>
