@@ -7,7 +7,7 @@ export default function MovieListCard({ movie }) {
 
     return (
         <>
-            <div className="col" key={movie.id}>
+            <div className="col">
 
                 <div className="card h-100">
 

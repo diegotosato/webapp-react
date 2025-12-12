@@ -20,6 +20,9 @@ export default function NavBar() {
                             <NavLink className="text-decoration-none" to="/">
                                 Home
                             </NavLink>
+                            <NavLink className="text-decoration-none" to="/admin/login">
+                                Admin
+                            </NavLink>
                         </li>
                     </ul>
 
