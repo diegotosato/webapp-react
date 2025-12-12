@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
-import MovieCard from "../Components/MovieCard"
+import MovieListCard from "../Components/MovieListCard"
 
 export default function HomePage() {
 
@@ -26,7 +26,7 @@ export default function HomePage() {
                     <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-3">
                         {
                             movies.map(movie => (
-                                <MovieCard movie={movie} />
+                                <MovieListCard movie={movie} />
                             ))
                         }
                     </div>
