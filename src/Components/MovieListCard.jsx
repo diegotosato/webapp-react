@@ -11,7 +11,7 @@ export default function MovieListCard({ movie }) {
 
                 <div className="card">
 
-                    <img src={`https://placehold.co/200x200?text=${movie.title}`} className="card-img-top" alt={movie.title} />
+                    <img src={`../../public/movies_cover/${movie.image}`} className="card-img-top" alt={movie.title} />
 
                     <div className="card-body">
 
