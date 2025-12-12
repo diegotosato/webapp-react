@@ -3,8 +3,10 @@ import AdminHeader from "../Components/Admin/AdminHeader"
 export default function AdminLayout() {
     return (
         <>
-            <AdminHeader />
-            <Outlet />
+            <body className="bg-secondary">
+                <AdminHeader />
+                <Outlet />
+            </body >
         </>
     )
 }

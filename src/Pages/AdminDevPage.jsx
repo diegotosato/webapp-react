@@ -31,24 +31,22 @@ export default function AdminDevPage() {
 
     return (
         <>
-            <main className="bg-secondary py-5">
 
-                <div className="container">
-
+            <div className="container">
 
 
 
 
 
-                    {
-                        (show ? <AdminAddMovieForm movies={movies} setMovies={setMovies} setShow={setShow} /> : '')
-                    }
 
-                    <AdminTable movies={movies} handleAddForm={handleAddForm} />
+                {
+                    (show ? <AdminAddMovieForm movies={movies} setMovies={setMovies} setShow={setShow} /> : '')
+                }
 
-                </div>
+                <AdminTable movies={movies} handleAddForm={handleAddForm} />
 
-            </main >
+            </div>
+
         </>
     )
 }
