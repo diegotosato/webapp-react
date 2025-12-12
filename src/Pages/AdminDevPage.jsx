@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
+import AdminTable from "../Components/Admin/AdminTable"
 
 export default function AdminDevPage() {
 
@@ -20,51 +21,47 @@ export default function AdminDevPage() {
 
     return (
         <>
-            <main className="bg-secondary vh-100 py-5">
+            <main className="bg-secondary py-5">
 
                 <div className="container">
 
-                    <div className="table-responsive">
+                    <AdminTable movies={movies} />
 
-                        <table className="table table-dark table-striped align-middle"                            >
-                            <thead>
-                                <tr>
-                                    <th>Title</th>
-                                    <th>Image</th>
-                                    <th>Director</th>
-                                    <th>Genre</th>
-                                    <th>Release Year</th>
-                                    <th className="text-center">
-                                        <button className="btn btn-sm btn-outline-light"><i className="bi bi-plus-circle"></i> Add film</button>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    movies.map(movie => (
+                    <form className="px-5 py-4 bg-dark text-white">
 
-                                        <tr className="" key={movie.id}>
-                                            <td>{movie.title}</td>
-                                            <td>
-                                                <img src={`../../public/movies_cover/${movie.image}`} alt={movie.title}
-                                                    style={{ height: 100, overflow: "hidden" }} className="border border-white" />
-                                            </td>
-                                            <td>{movie.director}</td>
-                                            <td>{movie.genre}</td>
-                                            <td>{movie.release_year}</td>
-                                            <td className="text-center">
-                                                <div className="d-flex justify-content-center gap-3">
-                                                    <button className="btn btn-sm btn-outline-warning"><i className="bi bi-pencil"></i></button>
-                                                    <button className="btn btn-sm btn-outline-danger"><i className="bi bi-trash3"></i></button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    ))
-                                }
-                            </tbody>
-                        </table>
+                        <div className="fomr-top row mb-3">
+                            <div className="col-6">
+                                <label htmlFor="title" className="form-label">Title</label>
+                                <input type="text" className="form-control" name="title" id="title" />
+                            </div>
 
-                    </div>
+                            <div className="col-6">
+                                <label htmlFor="formFile" className="form-label">Image</label>
+                                <input className="form-control" type="file" id="formFile" />
+                            </div>
+                        </div>
+
+                        <div className="form-bottom row row-cols-3">
+                            <div className="col">
+                                <label htmlFor="director" className="form-label">Director</label>
+                                <input type="text" className="form-control" name="director" id="director" />
+                            </div>
+
+                            <div className="col">
+                                <label htmlFor="genre" className="form-label">Genre</label>
+                                <input type="text" className="form-control" name="genre" id="genre" />
+                            </div>
+
+                            <div className="col">
+                                <label htmlFor="release-year" className="form-label">Release Year</label>
+                                <input type="number" className="form-control" name="release-year" id="release-year" />
+                            </div>
+
+                        </div>
+
+                        <button className="btn btn-primary mt-4"><i className="bi bi-save"></i>Save</button>
+
+                    </form>
 
                 </div>
 
