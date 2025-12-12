@@ -23,7 +23,51 @@ export default function MovieDetailPage() {
                 console.log(err.message);
             })
     }, [])
-    console.log(reviews);
+
+
+    const [reviewerName, setReviewerName] = useState('')
+    const [select, setSelect] = useState(1)
+    const [textarea, setTextarea] = useState('')
+
+    const [nameValidation, setNameValidation] = useState(false)
+    const [textareaVal, setTextareaVal] = useState(false)
+
+
+    function handleSubmit(e) {
+        e.preventDefault()
+
+        if (reviewerName.length === 0) {
+            setNameValidation(true)
+            return;
+        } else {
+            setNameValidation(false)
+        }
+
+        if (textarea.length === 0) {
+            setTextareaVal(true)
+            return;
+        } else {
+            setTextareaVal(false)
+        }
+
+        let newReview = {
+            id: reviews[reviews.length - 1].id + 1,
+            name: reviewerName,
+            vote: select,
+            text: textarea
+        }
+
+        setReviewerName('')
+        setSelect(1)
+        setTextarea('')
+        setReviews([...reviews, newReview])
+
+
+
+        console.log(newReview);
+
+    }
+
 
 
     return (
@@ -57,23 +101,27 @@ export default function MovieDetailPage() {
 
                     <h3 className="mb-3">Leave your review</h3>
 
-                    <form>
+                    <form onSubmit={(e) => (handleSubmit(e))}>
                         <div className="row row-cols-2">
 
                             <div className="mb-3">
                                 <label htmlFor="name" className="form-label"><strong>Name</strong></label>
-                                <input type="text" className="form-control" name="name" id="name" aria-describedby="nameHelper" placeholder="Your name here" />
-                                <small id="nameHelper" className="form-text text-muted">Insert your name here</small>
+                                <input type="text" className="form-control" name="name" id="name" placeholder="Your name here"
+                                    value={reviewerName} onChange={e => setReviewerName(e.target.value)} />
+                                {
+                                    (nameValidation ? <small className="text-danger">Leave your name!</small> : '')
+                                }
+
                             </div>
 
                             <div className="mb-3">
                                 <label htmlFor="rating" className="form-label"><strong>Rating</strong></label>
-                                <select className="form-select" name="rating" id="rating"                            >
-                                    <option value="">1</option>
-                                    <option value="">2</option>
-                                    <option value="">3</option>
-                                    <option value="">4</option>
-                                    <option value="">5</option>
+                                <select className="form-select" name="rating" id="rating" value={select} onChange={e => setSelect(Number(e.target.value))} >
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
                                 </select>
                             </div>
 
@@ -82,8 +130,13 @@ export default function MovieDetailPage() {
 
                         <div className="mb-3">
                             <label htmlFor="review" className="form-label"><strong>Review</strong></label>
-                            <textarea className="form-control" name="review" id="review" rows="2" placeholder="Your review here..." style={{ resize: "none" }}></textarea>
+                            <textarea className="form-control" name="review" id="review" rows="2" placeholder="Your review here..."
+                                style={{ resize: "none" }} value={textarea} onChange={e => setTextarea(e.target.value)}></textarea>
+                            {
+                                (textareaVal ? <small className="text-danger">Leave a review!</small> : '')
+                            }
                         </div>
+
                         <button type="submit" className="btn btn-primary">
                             <i className="bi bi-send"></i> Send
                         </button>
