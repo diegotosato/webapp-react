@@ -4,7 +4,7 @@ export default function MovieDetailCard({ movie }) {
             <div className="card w-100">
                 <div className="row">
                     <div className="col-md-5">
-                        <img src={`https://placehold.co/400x400?text=${movie.title}`} className="img-fluid rounded-start w-100" alt={movie.title} />
+                        <img src={`../../public/movies_cover/${movie.image}`} className="img-fluid rounded-start w-100" alt={movie.title} />
                     </div>
                     <div className="col-md-7">
                         <div className="card-body h-100 d-flex flex-column justify-content-center gap-4">
