@@ -35,8 +35,12 @@ export default function MovieDetailPage() {
                         <MovieDetailCard movie={movie} />
                         <button className="btn btn-primary p-3" onClick={() => (navigate(-1))}>Back</button>
                     </div>
+                </div>
 
+                <hr className="my-5" />
 
+                <div className="container ">
+                    <h3 className="mb-2">Reviews</h3>
 
                     <div className="reviews row">
                         {
