@@ -40,7 +40,7 @@ export default function MovieDetailPage() {
                 <hr className="my-5" />
 
                 <div className="container ">
-                    <h3 className="mb-2">Reviews</h3>
+                    <h3 className="mb-3">Reviews</h3>
 
                     <div className="reviews row">
                         {
