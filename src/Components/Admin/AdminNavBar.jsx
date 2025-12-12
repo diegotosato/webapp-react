@@ -17,7 +17,7 @@ export default function NavBar() {
                 <div className="collapse navbar-collapse" id="collapsibleNavId">
                     <ul className="navbar-nav me-auto mt-2 mt-lg-0">
                         <li className="nav-item">
-                            <NavLink className="text-decoration-none" to="/">
+                            <NavLink className="text-decoration-none me-3" to="/">
                                 Home
                             </NavLink>
                             <NavLink className="text-decoration-none" to="/admin/login">
