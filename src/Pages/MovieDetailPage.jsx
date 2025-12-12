@@ -31,10 +31,8 @@ export default function MovieDetailPage() {
             <main>
                 <div className="container ">
 
-                    <div className="d-flex align-items-start gap-3">
-                        <MovieDetailCard movie={movie} />
-                        <button className="btn btn-primary p-3" onClick={() => (navigate(-1))}>Back</button>
-                    </div>
+                    <button className="btn btn-primary py-2 px-4 mb-2" onClick={() => (navigate(-1))}>Back</button>
+                    <MovieDetailCard movie={movie} />
                 </div>
 
                 <hr className="my-5" />

@@ -9,9 +9,9 @@ export default function MovieListCard({ movie }) {
         <>
             <div className="col" key={movie.id}>
 
-                <div className="card">
+                <div className="card h-100">
 
-                    <img src={`../../public/movies_cover/${movie.image}`} className="card-img-top" alt={movie.title} />
+                    <img src={`../../public/movies_cover/${movie.image}`} className="card-img-top h-75" alt={movie.title} />
 
                     <div className="card-body">
 
