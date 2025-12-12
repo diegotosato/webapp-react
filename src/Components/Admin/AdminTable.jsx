@@ -1,9 +1,9 @@
-export default function AdminTable({ movies }) {
+export default function AdminTable({ movies, handleAddForm }) {
     return (
         <>
             <div className="table-responsive">
 
-                <table className="table table-dark table-striped align-middle"                            >
+                <table className="table table-dark table-striped align-middle">
                     <thead className="align-middle">
                         <tr>
                             <th>Title</th>
@@ -13,7 +13,9 @@ export default function AdminTable({ movies }) {
                             <th>Release Year</th>
                             <th>Abstract</th>
                             <th className="text-center">
-                                <button className="btn btn-sm btn-outline-light"><i className="bi bi-plus-circle"></i> Add</button>
+                                <button className="btn btn-sm btn-outline-light" onClick={handleAddForm}>
+                                    <i className="bi bi-plus-circle"></i> Add
+                                </button>
                             </th>
                         </tr>
                     </thead>
