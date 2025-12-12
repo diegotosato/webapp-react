@@ -26,7 +26,7 @@ export default function HomePage() {
                     <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-5">
                         {
                             movies.map(movie => (
-                                <MovieListCard movie={movie} />
+                                <MovieListCard movie={movie} key={movie.id} />
                             ))
                         }
                     </div>
