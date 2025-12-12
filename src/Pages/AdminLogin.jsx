@@ -42,7 +42,7 @@ export default function AdminLogin() {
 
     return (
         <>
-            <div className="viewport vh-100 d-flex align-items-center bg-secondary">
+            <div className="viewport min-vh-100 d-flex align-items-center bg-secondary">
 
                 <div className="container text-white w-75">
 

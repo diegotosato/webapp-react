@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom"
 export default function AdminHeader() {
     return (
         <>
-            <nav className="navbar navbar-expand-sm navbar-dark bg-dark px-5 mb-5">
+            <nav className="navbar navbar-expand-sm navbar-dark bg-dark px-5">
                 <a className="navbar-brand" href="#">MovieAPI</a>
                 <button className="navbar-toggler d-lg-none"
                     type="button"
