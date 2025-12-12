@@ -35,7 +35,7 @@ export default function MovieDetailPage() {
             <main>
                 <div className="container ">
 
-                    <button className="btn btn-primary py-2 px-4 mb-2" onClick={() => (navigate(-1))}>Back</button>
+                    <button className="btn btn-primary py-2 px-4 mb-2" onClick={() => (navigate('/'))}>Back</button>
                     <MovieDetailCard movie={movie} />
                 </div>
 
