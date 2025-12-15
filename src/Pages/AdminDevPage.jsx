@@ -67,7 +67,7 @@ export default function AdminDevPage() {
                                         <tr className="" key={movie.id}>
                                             <td>{movie.title}</td>
                                             <td>
-                                                <img src={`../../public/movies_cover/${movie.image}`} alt={movie.title}
+                                                <img src={`../../public/uploads/${movie.image}`} alt={movie.title}
                                                     style={{ height: 100, overflow: "hidden" }} className="border border-white" />
                                             </td>
                                             <td>{movie.director}</td>
