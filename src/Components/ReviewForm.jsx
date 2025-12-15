@@ -13,7 +13,7 @@ export default function ReviewForm({ reviews, movieID }) {
 
 
     function handleSubmit(e) {
-        // e.preventDefault()   
+        e.preventDefault()
 
         const formPayload = new FormData()
         formPayload.append("name", formData.name)
