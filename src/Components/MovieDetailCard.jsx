@@ -4,7 +4,7 @@ export default function MovieDetailCard({ movie }) {
             <div className="card" style={{ height: 600, overflow: "hidden" }}>
                 <div className="row g-0" style={{ height: "100%" }}>
                     <div className="col-md-4" style={{ height: "100%" }}>
-                        <img src={`../../public/movies_cover/${movie.image}`} className="img-fluid rounded-start"
+                        <img src={`../../public/uploads/${movie.image}`} className="img-fluid rounded-start"
                             alt={movie.title} style={{ height: "100%", width: "100%", objectFit: "cover" }} />
                     </div>
                     <div className="col-md-8" style={{ height: "100%" }}>
