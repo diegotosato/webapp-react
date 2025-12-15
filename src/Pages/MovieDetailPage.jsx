@@ -61,7 +61,7 @@ export default function MovieDetailPage() {
 
                     <h3 className="mb-3">Leave your review</h3>
 
-                    <ReviewForm reviews={reviews} setReviews={setReviews} />
+                    <ReviewForm reviews={reviews} setReviews={setReviews} movieID={id} />
 
                 </div>
 

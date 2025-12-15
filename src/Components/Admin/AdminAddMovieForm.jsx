@@ -1,60 +1,50 @@
 import { useState, useEffect } from "react"
+import axios from "axios"
+import { useNavigate } from "react-router-dom"
 
 export default function AdminAddMovieForm({ movies, setMovies, setShow }) {
 
-    const [newMovTitle, setNewMovTitle] = useState('')
-    const [newMovImage, setNewMovImage] = useState('')
-    const [newMovDirector, setNewMovDirector] = useState('')
-    const [newMovAbstract, setNewMovAbstract] = useState('')
-    const [newMovGenre, setNewMovGenre] = useState('')
-    const [newMovYear, setNewMovYear] = useState('')
+    const initialFormData = {
+        title: "",
+        director: "",
+        genre: "",
+        release_year: "",
+        abstract: "",
+        image: null
+    }
 
-    const [titleVal, setTitleVal] = useState(false)
+    const [formData, setFormData] = useState(initialFormData)
 
-
+    const navigate = useNavigate()
 
 
     function handleSubmit(e) {
         e.preventDefault()
 
-        if (newMovTitle.length === 0) {
-            setTitleVal(true)
-            return;
-        } else {
-            setTitleVal(false)
-        }
-
-        if (newMovDirector.length === 0) {
-            setNewMovDirector('-')
-        }
-
-        if (newMovAbstract.length === 0) {
-            setNewMovAbstract('-')
-        }
-
-        if (newMovGenre.length === 0) {
-            setNewMovGenre('-')
-        }
-
-        if (newMovYear.length === 0) {
-            setNewMovYear(new Date().getFullYear())
-        }
+        const formPayload = new FormData()
+        formPayload.append("title", formData.title)
+        formPayload.append("director", formData.director)
+        formPayload.append("genre", formData.genre)
+        formPayload.append("release_year", formData.release_year)
+        formPayload.append("abstract", formData.abstract)
+        formPayload.append("image", formData.image)
 
 
-        let newMovie = {
-            id: movies[movies.length - 1].id + 1,
-            title: newMovTitle,
-            image: newMovImage,
-            director: newMovDirector,
-            genre: newMovGenre,
-            release_year: newMovYear,
-            abstract: newMovAbstract
-        }
+        axios.post("http://localhost:3000/api/movies", formPayload, {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        }).then(res => {
+            console.log(res);
 
-        setMovies([...movies, newMovie])
-        setShow(false)
+            setMovies(prev => [...prev, res.data])
+            setFormData(initialFormData)
+            navigate('/admin/dev')
+            setShow(false)
 
-
+        }).catch(err => {
+            console.log(err);
+        })
     }
 
 
@@ -66,26 +56,42 @@ export default function AdminAddMovieForm({ movies, setMovies, setShow }) {
 
     return (
         <>
-            <form className="px-5 py-4 bg-dark text-white mb-5" onSubmit={e => handleSubmit(e)}>
+            <form className="px-5 py-4 bg-dark text-white mb-5" onSubmit={handleSubmit} encType="multipart/form-data">
 
                 <div className="fomr-top row row-cols-3 mb-3">
                     <div className="col">
                         <label htmlFor="title" className="form-label">Title</label>
-                        <input type="text" className="form-control" name="title" id="title"
-                            value={newMovTitle} onChange={e => setNewMovTitle(e.target.value)} />
-                        {
-                            (titleVal ? <small className="text-danger">Insert a VALID title</small> : '')
-                        }
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="title"
+                            id="title"
+                            value={formData.title}
+                            onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                        />
+
                     </div>
 
                     <div className="col">
                         <label htmlFor="formFile" className="form-label">Image</label>
-                        <input className="form-control" type="file" id="formFile" value={newMovImage} onChange={e => setNewMovImage(e.target.value)} />
+                        <input
+                            type="file"
+                            className="form-control"
+                            id="formFile"
+                            onChange={(e) => setFormData({ ...formData, image: e.target.files[0] })}
+                        />
                     </div>
+
                     <div className="col">
                         <label htmlFor="director" className="form-label">Director</label>
-                        <input type="text" className="form-control" name="director" id="director"
-                            value={newMovDirector} onChange={e => setNewMovDirector(e.target.value)} />
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="director"
+                            id="director"
+                            value={formData.director}
+                            onChange={(e) => setFormData({ ...formData, director: e.target.value })}
+                        />
                     </div>
                 </div>
 
@@ -93,8 +99,16 @@ export default function AdminAddMovieForm({ movies, setMovies, setShow }) {
 
                     <div>
                         <label htmlFor="abstract" className="form-label">Abstract</label>
-                        <textarea type="text" className="form-control" name="abstract" id="abstract" rows={2} style={{ resize: "none" }}
-                            value={newMovAbstract} onChange={e => setNewMovAbstract(e.target.value)} />
+                        <textarea
+                            type="text"
+                            className="form-control"
+                            name="abstract"
+                            id="abstract"
+                            rows={2}
+                            style={{ resize: "none" }}
+                            value={formData.abstract}
+                            onChange={(e) => setFormData({ ...formData, abstract: e.target.value })}
+                        />
                     </div>
 
                 </div>
@@ -103,14 +117,25 @@ export default function AdminAddMovieForm({ movies, setMovies, setShow }) {
 
                     <div className="col">
                         <label htmlFor="genre" className="form-label">Genre</label>
-                        <input type="text" className="form-control" name="genre" id="genre"
-                            value={newMovGenre} onChange={e => setNewMovGenre(e.target.value)} />
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="genre"
+                            id="genre"
+                            value={formData.genre}
+                            onChange={(e) => setFormData({ ...formData, genre: e.target.value })}
+                        />
                     </div>
 
                     <div className="col">
                         <label htmlFor="release-year" className="form-label">Release Year</label>
-                        <input type="text" className="form-control" name="release-year" id="release-year"
-                            value={newMovYear} onChange={e => setNewMovYear(e.target.value)} />
+                        <input
+                            type="number"
+                            className="form-control"
+                            name="release-year"
+                            id="release-year"
+                            onChange={(e) => setFormData({ ...formData, release_year: e.target.value })}
+                        />
                     </div>
 
                 </div>
