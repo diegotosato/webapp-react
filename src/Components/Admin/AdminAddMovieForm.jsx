@@ -15,11 +15,18 @@ export default function AdminAddMovieForm({ setMovies, setShow }) {
 
     const [formData, setFormData] = useState(initialFormData)
 
+    const [titleCheck, setTitleCheck] = useState(false)
+
     const navigate = useNavigate()
 
 
     function handleSubmit(e) {
         e.preventDefault()
+
+        if (formData.title.length === 0) {
+            setTitleCheck(true)
+            return;
+        }
 
         const currentYear = new Date().getFullYear()
         const formPayload = new FormData()
@@ -62,10 +69,14 @@ export default function AdminAddMovieForm({ setMovies, setShow }) {
     return (
         <>
             <form className="px-5 py-4 bg-dark text-white mb-5" onSubmit={handleSubmit} encType="multipart/form-data">
+                <div id="helpId" className="alert alert-info">
+                    <i className="bi bi-info-circle-fill"></i> Only the fields with (*) are required,
+                    if the other fields are empty when you send the form, the movie will added anyway
+                </div>
 
                 <div className="fomr-top row row-cols-3 mb-3">
                     <div className="col">
-                        <label htmlFor="title" className="form-label">Title</label>
+                        <label htmlFor="title" className="form-label">Title <span className="text-danger">(*)</span></label>
                         <input
                             type="text"
                             className="form-control"
@@ -74,6 +85,11 @@ export default function AdminAddMovieForm({ setMovies, setShow }) {
                             value={formData.title}
                             onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                         />
+                        {
+                            titleCheck && <small id="helpId" className="form-text text-danger">
+                                <i className="bi bi-exclamation-circle-fill"></i> Insert a valid movie name
+                            </small>
+                        }
 
                     </div>
 
@@ -146,7 +162,7 @@ export default function AdminAddMovieForm({ setMovies, setShow }) {
                 </div>
                 <div className="buttons d-flex justify-content-between">
                     <button className="btn btn-primary mt-4"><i className="bi bi-save"></i> Save</button>
-                    <button className="btn btn-danger mt-4" onClick={handleClose}><i className="bi bi-x-lg"></i> Close</button>
+                    <button type="button" className="btn btn-danger mt-4" onClick={handleClose}><i className="bi bi-x-lg"></i> Close</button>
                 </div>
             </form>
         </>
