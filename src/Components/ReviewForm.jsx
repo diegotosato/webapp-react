@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
 
-export default function ReviewForm({ reviews, movieID }) {
+export default function ReviewForm({ reviews, setReviews, movieID }) {
 
     const initialFormData = {
         name: "",
@@ -11,9 +11,16 @@ export default function ReviewForm({ reviews, movieID }) {
 
     const [formData, setFormData] = useState(initialFormData)
 
+    const [reviewCheck, setReviewCheck] = useState(false)
+
 
     function handleSubmit(e) {
         e.preventDefault()
+
+        if (formData.name.length === 0) {
+            setReviewCheck(true)
+            return;
+        }
 
         const formPayload = new FormData()
         formPayload.append("name", formData.name)
@@ -25,7 +32,6 @@ export default function ReviewForm({ reviews, movieID }) {
         axios.post(`http://localhost:3000/api/movies/${movieID}/reviews`, formPayload)
             .then(res => {
                 console.log(res);
-
                 setFormData(initialFormData)
 
             }).catch(err => {
@@ -38,10 +44,16 @@ export default function ReviewForm({ reviews, movieID }) {
     return (
         <>
             <form onSubmit={handleSubmit}>
+
+                <div id="helpId" className="alert alert-info">
+                    <i className="bi bi-info-circle-fill"></i> Only the fields with (*) are required,
+                    if the other fields are empty when you send the form, the review will added anyway
+                </div>
+
                 <div className="row row-cols-2">
 
                     <div className="mb-3">
-                        <label htmlFor="name" className="form-label"><strong>Name</strong></label>
+                        <label htmlFor="name" className="form-label"><strong>Name (*)</strong></label>
                         <input
                             type="text"
                             className="form-control"
@@ -51,6 +63,11 @@ export default function ReviewForm({ reviews, movieID }) {
                             value={formData.name}
                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         />
+                        {
+                            reviewCheck && <small id="helpId" className="form-text text-danger">
+                                <i className="bi bi-exclamation-circle-fill"></i> Insert a valid name
+                            </small>
+                        }
 
                     </div>
 
