@@ -5,7 +5,7 @@ export default function ReviewForm({ reviews, movieID }) {
 
     const initialFormData = {
         name: "",
-        vote: "",
+        vote: 1,
         text: ""
     }
 

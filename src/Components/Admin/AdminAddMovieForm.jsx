@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
 
-export default function AdminAddMovieForm({ movies, setMovies, setShow }) {
+export default function AdminAddMovieForm({ setMovies, setShow }) {
 
     const initialFormData = {
         title: "",
@@ -21,13 +21,18 @@ export default function AdminAddMovieForm({ movies, setMovies, setShow }) {
     function handleSubmit(e) {
         e.preventDefault()
 
+        const currentYear = new Date().getFullYear()
         const formPayload = new FormData()
+
         formPayload.append("title", formData.title)
         formPayload.append("director", formData.director)
         formPayload.append("genre", formData.genre)
-        formPayload.append("release_year", formData.release_year)
+        formPayload.append("release_year", formData.release_year || currentYear)
         formPayload.append("abstract", formData.abstract)
-        formPayload.append("image", formData.image)
+
+        if (formData.image) {
+            formPayload.append("image", formData.image)
+        }
 
 
         axios.post("http://localhost:3000/api/movies", formPayload, {
