@@ -5,7 +5,11 @@ import MovieDetailCard from "../Components/MovieDetailCard"
 import ReviewCard from "../Components/ReviewCard"
 import ReviewForm from "../Components/ReviewForm"
 
+import { useCustom } from "../contexts/CustomContexts"
+
 export default function MovieDetailPage() {
+
+    const { setLoading } = useCustom()
 
     const { id } = useParams()
     const navigate = useNavigate()
@@ -20,9 +24,12 @@ export default function MovieDetailPage() {
             .then(response => {
                 setMovie(response.data)
                 setReviews(response.data.reviews)
+                setLoading(true)
             }).catch(err => {
                 console.log(err.message);
-            })
+            }).finally(
+                setLoading(false)
+            )
     }, [])
 
 
