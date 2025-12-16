@@ -6,27 +6,32 @@ import NotFoundPage from "./Pages/NotFoundPage"
 import AdminLogin from "./Pages/AdminLogin"
 import AdminLayout from "./Layout/AdminLayout"
 import AdminDevPage from "./Pages/AdminDevPage"
+import { CustomProvider } from "./contexts/CustomContexts"
 
 function App() {
   return (
     <>
       <BrowserRouter>
 
-        <Routes>
+        <CustomProvider>
+          <Routes>
 
-          <Route element={<DefaultLayout />}>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/details/:id" element={<MovieDetailPage />} />
-          </Route>
 
-          <Route element={<AdminLayout />}>
-            <Route path="/admin/login" element={<AdminLogin />} />
-            <Route path="/admin/dev" element={<AdminDevPage />} />
-          </Route>
+            <Route element={<DefaultLayout />}>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/details/:id" element={<MovieDetailPage />} />
+            </Route>
 
-          <Route path="/*" element={<NotFoundPage />} />
+            <Route element={<AdminLayout />}>
+              <Route path="/admin/login" element={<AdminLogin />} />
+              <Route path="/admin/dev" element={<AdminDevPage />} />
+            </Route>
 
-        </Routes>
+            <Route path="/*" element={<NotFoundPage />} />
+
+
+          </Routes>
+        </CustomProvider>
 
       </BrowserRouter>
     </>
