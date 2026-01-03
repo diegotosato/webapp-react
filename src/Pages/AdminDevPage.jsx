@@ -70,17 +70,51 @@ export default function AdminDevPage() {
                         <form className="bg-dark p-4 mb-4 rounded" onSubmit={handleUpdate}>
                             <h5 className="text-white mb-3">Edit Movie</h5>
 
+                            <label htmlFor="title" className="form-label text-white">Title</label>
                             <input
                                 type="text"
-                                className="form-control mb-2"
+                                name="title"
+                                id="title"
+                                className="form-control mb-3"
                                 value={editingMovie.title}
                                 onChange={e => setEditingMovie({ ...editingMovie, title: e.target.value })} />
 
+                            <label htmlFor="director" className="form-label text-white">Director</label>
                             <input
                                 type="text"
-                                className="form-control mb-2"
+                                name="director"
+                                id="director"
+                                className="form-control mb-3"
                                 value={editingMovie.director}
                                 onChange={e => setEditingMovie({ ...editingMovie, director: e.target.value })} />
+
+                            <label htmlFor="genre" className="form-label text-white">Genre</label>
+                            <input
+                                type="text"
+                                name="genre"
+                                id="genre"
+                                className="form-control mb-3"
+                                value={editingMovie.genre}
+                                onChange={e => setEditingMovie({ ...editingMovie, genre: e.target.value })} />
+
+                            <label htmlFor="release_year" className="form-label text-white">Release year</label>
+                            <input
+                                type="number"
+                                name="release_year"
+                                id="release_year"
+                                className="form-control mb-3"
+                                value={editingMovie.release_year}
+                                onChange={e => setEditingMovie({ ...editingMovie, release_year: e.target.value })} />
+
+                            <label htmlFor="abstract" className="form-label text-white">Abstract</label>
+                            <textarea
+                                name="abstract"
+                                id="abstract"
+                                className="form-control mb-3"
+                                rows={2}
+                                style={{ resize: "none" }}
+                                value={editingMovie.abstract}
+                                onChange={e => setEditingMovie({ ...editingMovie, abstract: e.target.value })} />
 
                             <button className="btn btn-success btn-sm">Save</button>
                             <button
@@ -148,7 +182,7 @@ export default function AdminDevPage() {
                     </div>
 
                 </div>
-            </section>
+            </section >
         </>
     )
 }
