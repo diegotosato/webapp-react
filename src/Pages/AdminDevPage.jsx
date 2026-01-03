@@ -7,6 +7,9 @@ export default function AdminDevPage() {
     //empty array to inglobe movies from DB
     const [movies, setMovies] = useState([])
 
+    const [editingMovie, setEditingMovie] = useState(null)
+
+
     //ajax request at component charge
     useEffect(() => {
         axios.get('http://localhost:3000/api/movies')
@@ -40,10 +43,55 @@ export default function AdminDevPage() {
             })
     }
 
+
+
+    function handleUpdate(e) {
+        e.preventDefault()
+
+        axios.patch(`http://localhost:3000/api/movies/${editingMovie.id}`, editingMovie)
+            .then(() => {
+                setMovies(prev =>
+                    prev.map(movie => movie.id === editingMovie.id ? editingMovie : movie)
+                )
+                setEditingMovie(null)
+            })
+            .catch(err => {
+                console.log(err.message)
+            })
+    }
+
+
     return (
         <>
             <section className="min-vh-100 bg-secondary py-5">
                 <div className="container">
+
+                    {editingMovie && (
+                        <form className="bg-dark p-4 mb-4 rounded" onSubmit={handleUpdate}>
+                            <h5 className="text-white mb-3">Edit Movie</h5>
+
+                            <input
+                                type="text"
+                                className="form-control mb-2"
+                                value={editingMovie.title}
+                                onChange={e => setEditingMovie({ ...editingMovie, title: e.target.value })} />
+
+                            <input
+                                type="text"
+                                className="form-control mb-2"
+                                value={editingMovie.director}
+                                onChange={e => setEditingMovie({ ...editingMovie, director: e.target.value })} />
+
+                            <button className="btn btn-success btn-sm">Save</button>
+                            <button
+                                type="button"
+                                className="btn btn-secondary btn-sm ms-2"
+                                onClick={() => setEditingMovie(null)} >
+                                Cancel
+                            </button>
+                        </form>
+                    )}
+
 
                     {
                         (show ? <AdminAddMovieForm movies={movies} setMovies={setMovies} setShow={setShow} /> : '')
@@ -83,7 +131,9 @@ export default function AdminDevPage() {
                                             <td>{movie.abstract}</td>
                                             <td className="text-center">
                                                 <div className="d-flex justify-content-center gap-3">
-                                                    <button className="btn btn-sm btn-outline-warning"><i className="bi bi-pencil"></i></button>
+                                                    <button className="btn btn-sm btn-outline-warning" onClick={() => setEditingMovie(movie)}>
+                                                        <i className="bi bi-pencil"></i>
+                                                    </button>
                                                     <button className="btn btn-sm btn-outline-danger" onClick={() => handleDelete(movie.id)}>
                                                         <i className="bi bi-trash3"></i>
                                                     </button>
