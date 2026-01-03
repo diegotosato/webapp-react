@@ -21,22 +21,29 @@ export default function AdminDevPage() {
     const [show, setShow] = useState(false)
 
 
-
-
-
     function handleAddForm() {
         setShow(true)
+    }
+
+
+    function handleDelete(movieId) {
+
+        axios.delete(`http://localhost:3000/api/movies/${movieId}`)
+            .then(() => {
+                // update movies returning all movies not affected by my selection
+                setMovies(prevMovies =>
+                    prevMovies.filter(movie => movie.id !== movieId)
+                )
+            })
+            .catch(err => {
+                console.log(err.message)
+            })
     }
 
     return (
         <>
             <section className="min-vh-100 bg-secondary py-5">
                 <div className="container">
-
-
-
-
-
 
                     {
                         (show ? <AdminAddMovieForm movies={movies} setMovies={setMovies} setShow={setShow} /> : '')
@@ -77,7 +84,9 @@ export default function AdminDevPage() {
                                             <td className="text-center">
                                                 <div className="d-flex justify-content-center gap-3">
                                                     <button className="btn btn-sm btn-outline-warning"><i className="bi bi-pencil"></i></button>
-                                                    <button className="btn btn-sm btn-outline-danger"><i className="bi bi-trash3"></i></button>
+                                                    <button className="btn btn-sm btn-outline-danger" onClick={() => handleDelete(movie.id)}>
+                                                        <i className="bi bi-trash3"></i>
+                                                    </button>
                                                 </div>
                                             </td>
                                         </tr>
